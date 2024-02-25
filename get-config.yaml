@@ -1,0 +1,12 @@
+---
+- name: Get pfsense config
+  hosts: pfsense
+  gather_facts: no
+  tasks:
+    - name: get config
+      ansible.builtin.raw: cat /conf/config.xml
+      register: config
+
+    - name: print config
+      ansible.builtin.debug:
+        var: config.stdout_lines
